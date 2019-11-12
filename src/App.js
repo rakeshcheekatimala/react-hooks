@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Plant from "./components/plant";
+import GitHubProfile from "./components/github-profile";
 import NameTag from "./components/name-tag";
 import Age from "./components/age";
 import useList from "./components/hooks/useList";
@@ -67,6 +69,8 @@ function App() {
         </div>
         <br />
         <Age />
+        <Plant />
+        <GitHubProfile />
       </header>
       <hr />
     </div>
