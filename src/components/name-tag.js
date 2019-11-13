@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 const boxStyle = {
   color: "red",
@@ -27,9 +28,9 @@ const NameTag = props => {
         <h3 onDoubleClick={props.onDoubleClick}>{props.firstName}</h3>
       )}
       <h3>{props.lastName}</h3>
-      <button onClick={props.onClick} name={props.firstName}>
+      <Button variant="danger" onClick={props.onClick} name={props.firstName}>
         Remove
-      </button>
+      </Button>
     </div>
   );
 };
