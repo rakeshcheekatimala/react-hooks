@@ -1,79 +1,49 @@
 import React, { useState } from "react";
-import Plant from "./components/plant";
-import GitHubProfile from "./components/github-profile";
-import NameTag from "./components/name-tag";
-import Age from "./components/age";
-import useList from "./components/hooks/useList";
-
+import {
+  Navbar,
+  Content,
+  ListExample,
+  Age,
+  GitHubProfile,
+  Input,
+  UserBackground
+} from "./components";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import progressContext from "./components/contexts/progressContext";
 import "./App.scss";
 
-const initialNames = [
-  {
-    firstName: "john",
-    lastName: "johnson"
-  },
-  {
-    firstName: "peter",
-    lastName: "peterson"
-  },
-  {
-    firstName: "abyss",
-    lastName: "abyssson"
-  }
-];
-
 function App() {
-  const items = useList(initialNames);
-  const [editable, setEditable] = useState(false);
-
-  function removeHandler(e) {
-    items.removeItem(e.target.name);
-  }
-
-  function doubleClickHandler() {
-    setEditable(true);
-  }
-
-  function onKeyPress(e, index) {
-    if (e.keyCode === 13 || e.charCode === 13) {
-      setEditable(false);
-      items.updateItem(index, e.target.value);
-    }
-  }
+  const [progressValue, setProgressValue] = useState(
+    "Did you explore React 16v+ for learning?"
+  );
   return (
-    <div className="App">
-      <header>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column"
-          }}
-        >
-          {items.list.map((v, i) => {
-            return (
-              <NameTag
-                key={i}
-                firstName={v.firstName}
-                lastName={v.lastName}
-                onClick={removeHandler}
-                editable={editable}
-                name={v.firstName}
-                onDoubleClick={doubleClickHandler}
-                onKeyPress={onKeyPress}
-                index={i}
+    <BrowserRouter>
+      {/* 
+	  	To make your context availabe throughout the application
+		We will pass the array of useState values so that anywhere in the application
+		we can get the value of the context variable and set the value
+	   */}
+      <progressContext.Provider value={[progressValue, setProgressValue]}>
+        <div className="App">
+          <header>
+            <Navbar />
+          </header>
+          <div className="App-Content container">
+            <Switch>
+              <Route path="/list-example" component={ListExample} />
+              <Route path="/usestate-example" component={Age} />
+              <Route path="/useeffect-example" component={GitHubProfile} />
+              <Route path="/reusable-example" component={Input} />
+              <Route
+                path="/usecontext-hook-example"
+                component={UserBackground}
               />
-            );
-          })}
+              <Route path="/" exact component={Content} />
+            </Switch>
+          </div>
         </div>
-        <br />
-        <Age />
-        <Plant />
-        <GitHubProfile />
-      </header>
-      <hr />
-    </div>
+      </progressContext.Provider>
+    </BrowserRouter>
   );
 }
 
