@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Button, ButtonGroup } from "react-bootstrap";
 const Age = () => {
   const [age, setAge] = useState(21);
   const ageUpHandler = () => {
@@ -9,13 +9,15 @@ const Age = () => {
     setAge(age - 1);
   };
   return (
-    <>
+    <div className="text-center">
       <h2>{age}</h2>
-
-      <button onClick={ageUpHandler}>Age Up </button>
-      <button onClick={ageDownHandler}>Age Down</button>
-      <br />
-    </>
+      <ButtonGroup>
+        <Button onClick={ageUpHandler} style={{ marginRight: "1rem" }}>
+          Age Up{" "}
+        </Button>
+        <Button onClick={ageDownHandler}>Age Down</Button>
+      </ButtonGroup>
+    </div>
   );
 };
 
