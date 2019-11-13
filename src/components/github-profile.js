@@ -28,8 +28,10 @@ const GitHubProfile = () => {
   return (
     <>
       <h1>GitHub Profile Information</h1>
-      <h3>{`follower: ${profile.followers}, repos: ${profile.publicRepos}`}</h3>
-      <mark>{profile.name}</mark>
+      <h3>{`Followers: ${profile.followers}, Repos: ${profile.publicRepos}`}</h3>
+      <p>
+        ProfileName: <b>{profile.name}</b>
+      </p>
     </>
   );
 };
