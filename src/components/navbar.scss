@@ -1,0 +1,30 @@
+$black: #1d252d;
+
+.Navbar {
+  ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 1.5rem;
+    justify-content: flex-end;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  li {
+    margin: 1.5rem;
+    font-family: Arial;
+  }
+
+  #title {
+    margin-right: auto;
+  }
+
+  li a {
+    color: $black;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    font-weight: bold;
+  }
+}
